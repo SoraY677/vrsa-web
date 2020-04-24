@@ -1,11 +1,27 @@
 <template>
   <div class="club">
-    <Contents :content="content" />
+    <Contents :content="content"/>
+    <section>
+    <h2>SC団体</h2>
+    <ul class="club-card-list">
+    <li><clubcard /></li>
+    <li><clubcard /></li>
+    <li><clubcard /></li>
+    <li><clubcard /></li>
+    </ul>
+    </section>
+    <section>
+    <h2>YC団体</h2>
+    </section>
+    <section>
+    <h2>TC団体</h2>
+    </section>    
   </div>
 </template>
 
 <script>
 import Contents from '~/components/layouts/Contents.vue';
+import clubcard from '~/components/layouts/ClubCard'
 export default {
   head() {
     return {
@@ -25,6 +41,7 @@ export default {
   },
   components: {
     Contents,
+    clubcard
   },
   async asyncData({ app }) {
     const response = await app.$axios.$get('https://api.tcu-vrsa.net/pages/3');
@@ -36,5 +53,19 @@ export default {
 </script>
 
 <style>
+
+ul.club-card-list{
+  display: flex;
+  padding:0;
+  margin:0;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+ul.club-card-list > li{
+  width:33%;
+  padding:1%;
+}
 
 </style>
