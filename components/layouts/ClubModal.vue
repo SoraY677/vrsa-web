@@ -66,12 +66,10 @@ export default {
   created() {
     let img = new Image();
     img.src = this.content.imgpath;
-    console.log(img.width);
-    console.log(img.height);
     if (img.width < img.height) {
       this.imgMaxSize = "400px";
     } else {
-      this.imgMaxSize = "";
+      this.imgMaxSize = "100%";
     }
   },
   methods: {
