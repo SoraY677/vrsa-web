@@ -1,15 +1,15 @@
 <template>
-  <v-card class="fill-height">
+  <v-card class="fill-height" @click="openModal()">
     <!-- タイトル -->
-    <v-card-text>
-      <p>●●団体</p>
-      <p class="display-1 text--primary">
-        {{ content.name }}
-      </p>
-    </v-card-text>
+    <v-card-title>
+      {{ content.name }}
+    </v-card-title>
+    <v-card-subtitle>
+      {{ content.genre }}
+    </v-card-subtitle>
+    <v-img height="200px" :src="content.imgpath"> </v-img>
     <!--リンク集-->
-    <v-card-actions>
-      <v-btn v-if="!Object.keys(content.link).length" disabled text></v-btn>
+    <!-- <v-card-actions>
       <v-btn
         v-for="(value, key) in content.link"
         :key="key"
@@ -18,37 +18,14 @@
       >
         <v-icon>{{ iconPathList[key] }}</v-icon>
       </v-btn>
-    </v-card-actions>
-    <!-- 説明文 -->
-    <v-card-text class="text--primary">
-      {{ content.overview }}
-    </v-card-text>
+    </v-card-actions> -->
+    <ClubModal ref="club_modal" :content="content" />
   </v-card>
-  <!-- <div class="container fill-height">
-    <v-card class="layout" outlined>
-      <v-container fluid>
-
-        <v-card-title class="pb-0">{{ content.name }}</v-card-title>
-
-        <v-card-actions>
-          <v-btn
-            v-for="(value, key) in content.link"
-            :key="key"
-            @click="transLink(value)"
-            text
-          >
-            <v-icon>{{ iconPathList[key] }}</v-icon>
-          </v-btn>
-        </v-card-actions>
-        <v-card-text class="text--primary">
-          {{ content.overview }}
-        </v-card-text>
-      </v-container>
-    </v-card>
-  </div> -->
 </template>
 
 <script>
+import ClubModal from "~/components/layouts/ClubModal";
+
 export default {
   props: {
     content: Object
@@ -61,9 +38,15 @@ export default {
       }
     };
   },
+  components: {
+    ClubModal
+  },
   methods: {
     transLink(path) {
       window.open(path, "_blank");
+    },
+    openModal() {
+      this.$refs.club_modal.open();
     }
   }
 };
