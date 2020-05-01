@@ -1,36 +1,68 @@
 <template>
   <v-dialog color="white" v-model="isShow">
     <v-card>
-      <v-container style="position:relative; max-width:90%">
-        <v-btn
-          color="blue"
-          absolute
-          dark
-          right
-          fab
-          @click="isShow = false"
-          text
-          x-large
-        >
-          <v-icon>mdi-close</v-icon>
-          <div>close</div>
-        </v-btn>
-        <v-card-title class="display-1 text--primary">
-          {{ content.name }}
-        </v-card-title>
-        <v-card-subtitle>{{ content.genre }}</v-card-subtitle>
-        <!--リンク集-->
-        <v-card-actions>
+      <v-container style="max-width:90%;">
+        <v-app-bar color="white" elevation="0">
+          <v-spacer></v-spacer>
           <v-btn
-            v-for="(value, key) in content.link"
-            :key="key"
-            @click="transLink(value)"
+            color="blue"
+            dark
+            right
+            fab
+            @click="isShow = false"
             text
+            x-large
           >
-            <v-icon>{{ iconPathList[key] }}</v-icon>
+            <v-icon>mdi-close</v-icon>
+            <div>close</div>
           </v-btn>
-        </v-card-actions>
-        <v-divider></v-divider>
+        </v-app-bar>
+
+        <div class="d-flex">
+          <v-avatar size="120" tile>
+            <v-img :src="content.icon"></v-img>
+          </v-avatar>
+
+          <p>
+            <v-card-title class=" display-1 text--primary">
+              {{ content.name }}
+            </v-card-title>
+            <v-card-subtitle>{{ content.category }}</v-card-subtitle>
+          </p>
+          <v-divider vertical inset></v-divider>
+          <!--リンク集-->
+          <v-card-actions class="d-flex flex-column">
+            <v-btn
+              class="pt-2"
+              v-for="(value, key) in content.link"
+              :key="key"
+              @click="transLink(value)"
+              text
+            >
+              <v-icon>{{ iconPathList[key] }}</v-icon>
+            </v-btn>
+          </v-card-actions>
+        </div>
+        <v-chip-group column>
+          <v-chip class="ma-2" color="blue" outlined>
+            <v-icon left>mdi-domain </v-icon>
+            {{ content.affiliation }}
+          </v-chip>
+          <v-chip class="ma-2" color="blue" outlined>
+            <v-icon left>mdi-map-marker </v-icon>
+            {{ content.place }}
+          </v-chip>
+          <v-chip class="ma-2" color="blue" outlined>
+            <v-icon left>mdi-calendar-blank-outline </v-icon>
+            {{ content.activityDay }}
+          </v-chip>
+        </v-chip-group>
+        <v-chip-group column>
+          <v-chip v-for="tag in content.tags" :key="tag.id" class="ma-2" label>
+            {{ tag }}
+          </v-chip>
+        </v-chip-group>
+
         <v-container>
           <!-- パンフ画像 -->
           <v-img
@@ -41,8 +73,9 @@
             :src="content.imgpath"
           >
           </v-img>
-          <p>{{ content.overview }}</p>
         </v-container>
+        <v-divider></v-divider>
+        <p>{{ content.description }}</p>
       </v-container>
     </v-card>
   </v-dialog>
@@ -58,7 +91,8 @@ export default {
       isShow: false,
       iconPathList: {
         hp: "fas fa-home",
-        twitter: "fab fa-twitter"
+        twitter: "fab fa-twitter",
+        hoge: "hoge"
       },
       imgMaxSize: ""
     };
@@ -67,7 +101,7 @@ export default {
     let img = new Image();
     img.src = this.content.imgpath;
     if (img.width < img.height) {
-      this.imgMaxSize = "400px";
+      this.imgMaxSize = "600px";
     } else {
       this.imgMaxSize = "100%";
     }

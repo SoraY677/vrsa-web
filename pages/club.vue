@@ -78,20 +78,30 @@ export default {
       clubCardList: [
         {
           name: "arte",
-          genre: "創作サークル",
+          category: "創作サークル",
+          affiliation: "横浜キャンパス",
+          place: "32C",
+          activityDay: "月・木・金 17:00~",
           imgpath: "/img/arte.jpg",
-          overview:
+          icon: "/img/arteIcon.jpg",
+          description:
             "これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。",
-          link: {}
+          tags: ["創作サークル", "うんたらかんたら"],
+          link: {
+            twitter: "https://twitter.com/ke_odakyu9000",
+            hp: "https://arteofficial.web.fc2.com/why.html",
+            hoge: "https://arteofficial.web.fc2.com/why.html"
+          }
         },
         {
           name: "freaks",
-          genre: "フットサルサークル",
+          affiliation: "横浜キャンパス",
+          place: "横浜キャンパスどこか",
+          activityDay: "毎週2日",
           imgpath: "/img/Freaks.jpg",
-          overview: "test",
-          link: {
-            twitter: "https://twitter.com/ke_odakyu9000"
-          }
+          description: "test",
+          tags: ["testtag", "testtag"],
+          link: {}
         }
       ]
     };
