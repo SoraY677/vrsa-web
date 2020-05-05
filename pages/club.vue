@@ -1,21 +1,20 @@
 <template>
   <div class="club">
     <Contents :content="content" />
-    <ul class="club-card-list container fill-height">
-      <v-row>
-        <v-col
-          v-for="cardLine in clubCardList"
-          :key="cardLine.index"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="4"
-          xl="4"
-        >
-          <ClubCard :content="cardLine" />
-        </v-col>
-      </v-row>
-    </ul>
+    <v-row class="d-flex justify-space-start">
+      <v-col
+        class="mx-3"
+        v-for="cardLine in clubCardList"
+        :key="cardLine.index"
+        cols="12"
+        sm="6"
+        md="4"
+        lg="4"
+        xl="4"
+      >
+        <ClubCard :content="cardLine" />
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -78,12 +77,11 @@ export default {
       clubCardList: [
         {
           name: "arte",
-          category: "創作サークル",
+          category: "同好会連合",
           affiliation: "横浜キャンパス",
           place: "32C",
           activityDay: "月・木・金 17:00~",
           imgpath: "/img/arte.jpg",
-          icon: "/img/arteIcon.jpg",
           description:
             "これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。これはテスト文章です。",
           tags: ["創作サークル", "うんたらかんたら"],
@@ -111,7 +109,8 @@ export default {
     return {
       content: response
     };
-  }
+  },
+  beforeUpdate() {}
 };
 </script>
 

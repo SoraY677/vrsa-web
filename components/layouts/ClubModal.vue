@@ -19,33 +19,12 @@
         </v-app-bar>
 
         <v-card class="mx-auto" max-width="800px" elevation="0">
-          <div class="d-flex">
-            <v-avatar size="120" tile>
-              <v-img :src="content.icon"></v-img>
-            </v-avatar>
-
-            <p>
-              <v-card-title class=" display-1 text--primary">
-                {{ content.name }}
-              </v-card-title>
-              <v-card-subtitle>{{ content.category }}</v-card-subtitle>
-            </p>
-            <v-spacer></v-spacer>
-            <v-divider vertical inset></v-divider>
-            <!--リンク集-->
-            <v-card-actions class="d-flex flex-column">
-              <v-btn
-                class="pt-2"
-                v-for="(value, key) in content.link"
-                :key="key"
-                @click="transLink(value)"
-                text
-              >
-                <v-icon>{{ iconPathList[key] }}</v-icon>
-              </v-btn>
-            </v-card-actions>
-            <v-spacer></v-spacer>
-          </div>
+          <p>
+            <v-card-title class=" display-1 text--primary">
+              {{ content.name }}
+            </v-card-title>
+            <v-card-subtitle>{{ content.category }}</v-card-subtitle>
+          </p>
           <v-chip-group column>
             <v-chip class="ma-2" color="blue" outlined>
               <v-icon left>mdi-domain </v-icon>
@@ -70,7 +49,20 @@
               {{ tag }}
             </v-chip>
           </v-chip-group>
+          <!--リンク集-->
+          <v-card-actions class="d-flex">
+            <v-btn
+              class="pt-2"
+              v-for="(value, key) in content.link"
+              :key="key"
+              @click="transLink(value)"
+              text
+            >
+              <v-icon>{{ iconPathList[key] }}</v-icon>
+            </v-btn>
+          </v-card-actions>
         </v-card>
+        <v-divider></v-divider>
         <v-container>
           <!-- パンフ画像 -->
           <v-img
