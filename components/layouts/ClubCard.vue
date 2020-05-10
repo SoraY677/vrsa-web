@@ -5,7 +5,7 @@
       {{ content.name }}
     </v-card-title>
     <v-card-subtitle>
-      {{ content.category }}
+      {{ content.affiliation }}
     </v-card-subtitle>
     <v-container>
       <v-img height="200px" :src="content.imgpath"> </v-img>

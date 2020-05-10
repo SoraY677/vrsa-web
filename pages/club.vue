@@ -4,7 +4,7 @@
     <v-row>
       <v-col cols="12" sm="12" md="4">
         <v-select
-          v-model="selectDefault.campus"
+          v-model="selectModel.campus"
           :items="filterWords.campus"
           prepend-icon="mdi-map-marker"
           label="キャンパス"
@@ -13,7 +13,7 @@
       </v-col>
       <v-col cols="12" sm="12" md="4">
         <v-select
-          v-model="selectDefault.affiliation"
+          v-model="selectModel.affiliation"
           :items="filterWords.affiliation"
           prepend-icon="fa-users"
           label="所属"
@@ -21,7 +21,7 @@
       </v-col>
       <v-col cols="12" sm="12" md="4">
         <v-select
-          v-model="selectDefault.tag"
+          v-model="selectModel.tag"
           :items="filterWords.tag"
           prepend-icon="fa-tags"
           label="タグ"
@@ -30,7 +30,7 @@
     </v-row>
     <v-row class="d-flex justify-space-start">
       <v-col
-        v-for="cardLine in clubCardList"
+        v-for="cardLine in FilterClub"
         :key="cardLine.index"
         cols="12"
         sm="6"
@@ -103,8 +103,8 @@ export default {
       clubCardList: [
         {
           name: "arte",
-          category: "同好会連合",
-          affiliation: "横浜キャンパス",
+          affiliation: "同好会連合",
+          campus: "横浜キャンパス",
           place: "32C",
           activityDay: "月・木・金 17:00~",
           imgpath: "/img/arte.jpg",
@@ -119,12 +119,13 @@ export default {
         },
         {
           name: "freaks",
-          affiliation: "横浜キャンパス",
+          affiliation: "体育会",
+          campus: "横浜キャンパス",
           place: "横浜キャンパスどこか",
           activityDay: "毎週2日",
           imgpath: "/img/Freaks.jpg",
           description: "test",
-          tags: ["testtag", "testtag"],
+          tags: ["スポーツ", "testtag"],
           link: {}
         }
       ],
@@ -165,12 +166,45 @@ export default {
           "合宿あり"
         ]
       },
-      selectDefault: {
+      selectModel: {
         campus: "指定なし",
         affiliation: "指定なし",
         tag: "指定なし"
       }
     };
+  },
+  computed: {
+    FilterClub: function() {
+      let visibleClubList = [];
+      for (let clubi in this.clubCardList) {
+        // キャンパスの指定
+        if (
+          this.clubCardList[clubi].campus === this.selectModel.campus ||
+          this.selectModel.campus == "指定なし"
+        ) {
+          //
+          if (
+            this.clubCardList[clubi].affiliation ===
+              this.selectModel.affiliation ||
+            this.selectModel.affiliation == "指定なし"
+          ) {
+            if (this.selectModel.tag == "指定なし") {
+              visibleClubList.push(this.clubCardList[clubi]);
+            } else {
+              const clubtags = this.clubCardList[clubi].tags;
+              for (let tag in clubtags) {
+                if (clubtags[tag] == this.selectModel.tag) {
+                  visibleClubList.push(this.clubCardList[clubi]);
+                  break;
+                }
+              }
+            }
+          }
+        }
+      }
+      console.log(visibleClubList);
+      return visibleClubList;
+    }
   },
   async asyncData({ app }) {
     const response = await app.$axios.$get("https://api.tcu-vrsa.net/pages/3");

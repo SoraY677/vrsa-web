@@ -23,12 +23,12 @@
             <v-card-title class=" display-1 text--primary">
               {{ content.name }}
             </v-card-title>
-            <v-card-subtitle>{{ content.category }}</v-card-subtitle>
+            <v-card-subtitle>{{ content.affiliation }}</v-card-subtitle>
           </p>
           <v-chip-group column>
             <v-chip class="ma-2" color="blue" outlined>
               <v-icon left>mdi-domain </v-icon>
-              {{ content.affiliation }}
+              {{ content.campus }}
             </v-chip>
             <v-chip class="ma-2" color="blue" outlined>
               <v-icon left>mdi-map-marker </v-icon>
