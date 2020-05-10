@@ -1,9 +1,35 @@
 <template>
   <div class="club">
     <Contents :content="content" />
+    <v-row>
+      <v-col cols="12" sm="12" md="4">
+        <v-select
+          v-model="selectDefault.campus"
+          :items="filterWords.campus"
+          prepend-icon="mdi-map-marker"
+          label="キャンパス"
+        >
+        </v-select>
+      </v-col>
+      <v-col cols="12" sm="12" md="4">
+        <v-select
+          v-model="selectDefault.affiliation"
+          :items="filterWords.affiliation"
+          prepend-icon="fa-users"
+          label="所属"
+        ></v-select>
+      </v-col>
+      <v-col cols="12" sm="12" md="4">
+        <v-select
+          v-model="selectDefault.tag"
+          :items="filterWords.tag"
+          prepend-icon="fa-tags"
+          label="タグ"
+        ></v-select>
+      </v-col>
+    </v-row>
     <v-row class="d-flex justify-space-start">
       <v-col
-        class="mx-3"
         v-for="cardLine in clubCardList"
         :key="cardLine.index"
         cols="12"
@@ -101,7 +127,49 @@ export default {
           tags: ["testtag", "testtag"],
           link: {}
         }
-      ]
+      ],
+      filterWords: {
+        campus: [
+          "指定なし",
+          "世田谷キャンパス",
+          "横浜キャンパス",
+          "等々力キャンパス"
+        ],
+        affiliation: [
+          "指定なし",
+          "学生団体連合会",
+          "特殊団体",
+          "文化団体連合会",
+          "体育会",
+          "同好会連合",
+          "愛好会",
+          "学科研究連合会"
+        ],
+        tag: [
+          "指定なし",
+          "学生団体",
+          "音楽系",
+          "情報系",
+          "スポーツ",
+          "球技",
+          "武道",
+          "文化・創作",
+          "音響・撮影",
+          "環境活動",
+          "インドア",
+          "アウトドア",
+          "がっつり",
+          "まったり",
+          "大人数",
+          "少人数",
+          "合宿あり"
+        ]
+      },
+      selectDefault: {
+        campus: "指定なし",
+        affiliation: "指定なし",
+        tag: "指定なし"
+      }
     };
   },
   async asyncData({ app }) {
@@ -115,6 +183,4 @@ export default {
 </script>
 
 <style>
-a {
-}
 </style>
